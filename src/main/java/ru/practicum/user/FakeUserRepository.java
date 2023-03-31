@@ -8,7 +8,12 @@ import java.util.List;
 
 @Repository
 public class FakeUserRepository implements UserRepository {
-    private static final List<User> FAKE_USERS = createManyFakeUsers(3);
+    private static final List<User> FAKE_USERS = new ArrayList<>();
+    private static Long userId = 0L;
+
+    private Long generatedId() {
+        return userId++;
+    }
 
     @Override
     public List<User> findAll() {
@@ -17,7 +22,10 @@ public class FakeUserRepository implements UserRepository {
 
     @Override
     public User save(User user) {
-        throw new UnsupportedOperationException("Метод save() ещё не готов");
+        //throw new UnsupportedOperationException("Метод save() ещё не готов");
+        user.setId(generatedId());
+        FAKE_USERS.add(user);
+        return user;
     }
 
     private static List<User> createManyFakeUsers(int count) {

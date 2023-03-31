@@ -8,18 +8,21 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
+    private ItemRepository itemRepository;
+
+    @Override
+    public List<Item> getItems(long userId) {
+        return itemRepository.findByUserId(userId);
+    }
+
     @Override
     public Item addNewItem(Long userId, Item item) {
-        return null;
+        item.setUserId(userId);
+        return itemRepository.save(item);
     }
 
     @Override
     public void deleteItem(long userId, long itemId) {
-
-    }
-
-    @Override
-    public List<Item> getItems(long userId) {
-        return null;
+        itemRepository.deleteByUserIdAndItemId(userId, itemId);
     }
 }
