@@ -1,6 +1,5 @@
 package ru.practicum.item;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -8,7 +7,8 @@ import java.util.List;
 
 @Repository
 public class ItemRepositoryImpl implements ItemRepository {
-    private static List<Item> items = new ArrayList<>();
+     private static final List<Item> items = new ArrayList<>();
+
     private static Long itemId = 0L;
 
     private Long generatedId() {

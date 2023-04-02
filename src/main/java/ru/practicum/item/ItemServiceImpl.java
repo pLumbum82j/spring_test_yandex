@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     @Override
     public List<Item> getItems(long userId) {
